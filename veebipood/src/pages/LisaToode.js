@@ -11,13 +11,35 @@ function LisaToode() {
     // else << kui EI OLE tosi, laheb teise koodiblokki
     if (nimiRef.current.value === "") {
     maaraSonum("Toodeet saa lisada kui nimi on tyhi")
-      } else {
+    } else {
       // maarasonum("Toode " + nimiRef.current.value + " edukalt lisatud")
+      let tooted = localStorage.getItem("tooted") // step 1.
+      console.log(tooted); // null                        '["TESLA"]'
+      tooted = JSON.parse(tooted) || []; // step 2.
+      console.log(tooted); // []                           ["TESLA"]
+      tooted.push(nimiRef.current.value);  // step 3
+      console.log(tooted); // ['text']                     ["TESLA","NOBE"]
+      tooted = JSON.stringify(tooted); // step 4
+      console.log(tooted); // ["text"]
+      localStorage.setItem("tooted", tooted); // step 5.   '["TESLA","NOBE"]'
       maaraSonum(`Toode ${nimiRef.current.value} edukalt lisatud`); 
-      localStorage.setItem("tooted", nimiRef.current.value);
-      }
+      // localStorage.setItem("tooted", nimiRef.current.value);
     }
-
+  }
+//ARRAY STEPS IMPORTANT
+  // 1. võta localStorage-st kõik eelnevad väärtused
+  //              localStorage.getItem("VÕTI");
+  // 2. võta jutumärgid ära
+  //              JSON.parse(array);
+  // 3. lisa uus toode juurde
+  //              array.push(ref.väärtus);
+  // 4. pane jutumärgid tagasi
+  //              JSON.stringify(array)
+  // 5. pane localStorage-sse uuenenud kujul tagasi
+  //              localStorage.setItem("VÕTI", array);
+  
+  // ---> lisa see refi vaartus
+  // andmebaasis saab
 
   return ( 
     <div>

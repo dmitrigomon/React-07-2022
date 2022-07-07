@@ -10,7 +10,7 @@ function Avaleht() {
   // const [muutuja3, funktsioonMisMuudabMuutujat3] = useState("algväärtus")
   // let kogus = 1;
   const [kogus, muudaKogus] = useState(1);
-  const toode = localStorage.getItem("tooted");
+  const tooted = JSON.parse(localStorage.getItem("tooted")) || [];
   const [veebileheKeel, muudaVeebileheKeel] = useState(localStorage.getItem("keel"));
   const muudaKoik = () => {
   }
@@ -48,25 +48,43 @@ function Avaleht() {
   const muudakeel = (lang) => {
     localStorage.setItem("keel", lang)
     muudaVeebileheKeel(lang);
+    
   }
+  const lisaOstukorvi = (klikitudToode) => {
+      let ostukorv = sessionStorage.getItem("ostukorv");
+      ostukorv = JSON.parse(ostukorv) || [];
+      ostukorv.push(klikitudToode);
+      ostukorv = JSON.stringify(ostukorv);
+      sessionStorage.setItem("ostukorv", ostukorv);
+    }
   return (
     <div>
       {/* {<img src="/logo512.png" alt="text" /> */}
-      <img src= {require("../assets/logo512.png") } alt="" />
+      {/* <img src= {require("../assets/logo512.png") } alt="" /> */}
       <div>Avaleht</div>
       <Link to="/ostukorv">
         <button>OSTUKORVI</button>
       </Link>
-
       <Link to="/lisa-toode">
         <button>LISA TOODE</button>
+      </Link>
+      <Link to="/poed">
+        <button>HALDA POODE</button>
       </Link>
 
       <div>{muutuja}</div>
       { muutuja === "uus väärtus" && <div>Väärtust on muudetud</div>}
       <button onClick={() => muudaKoik()}> Pane uus väärtus</button>
       <button onClick={() => funktsioonMisMuudabMuutujat("uus väärtus")}> Pane uus väärtus</button> <br />
-      <div>{toode}</div>
+
+     <div>{tooted.map(element => 
+      <div key={element}>
+        <div>{element}</div>
+        <button onClick={() => lisaOstukorvi(element)}>Lisa ostukorvi</button>
+      </div>)}
+    </div>
+        
+
       <button disabled={kogus < 1} onClick={() => vahendaKogust()}>-</button>
       <div>{kogus}</div>
       <button onClick={() => suurendaKogust()}>+</button> <br />
@@ -80,7 +98,8 @@ function Avaleht() {
       { veebileheKeel === "en" && <div>Leht on inglise keelne</div>}
       { veebileheKeel === "ru" && <div>Leht on vene keelne</div>}
 
-    </div> );
+    </div>
+  );
 }
 
 export default Avaleht;

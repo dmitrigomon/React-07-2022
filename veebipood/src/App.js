@@ -1,8 +1,9 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Avaleht from "./pages/Avaleht";
 import LisaToode from "./pages/LisaToode";
 import Ostukorv from "./pages/Ostukorv";
+import Poed from "./pages/Poed";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       <Routes>
         <Route path='' element={<Avaleht /> } />
         <Route path='ostukorv' element={ <Ostukorv />} /> 
-        <Route path='lisa-toode' element={ <LisaToode />} />
+        <Route path='lisa-toode' element={<LisaToode />} />
+        <Route path='poed' element={ <Poed />} />
       </Routes>
     
     </div>
