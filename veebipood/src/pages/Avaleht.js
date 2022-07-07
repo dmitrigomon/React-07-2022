@@ -51,8 +51,8 @@ function Avaleht() {
   }
   return (
     <div>
-      {/* {<img src="/logo192.png" alt="text" />
-      <img src= {require("../assets/logo192.png") } alt="" />} */}
+      {/* {<img src="/logo512.png" alt="text" /> */}
+      <img src= {require("../assets/logo512.png") } alt="" />
       <div>Avaleht</div>
       <Link to="/ostukorv">
         <button>OSTUKORVI</button>
