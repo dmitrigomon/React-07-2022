@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 function LisaToode() {
   const nimiRef = useRef();
+  const hindRef = useRef();
+  const aktiivneRef = useRef();
   const [sonum, maaraSonum] = useState("");
 
   const lisaUusToode = () => {
@@ -16,8 +18,8 @@ function LisaToode() {
       let tooted = localStorage.getItem("tooted") // step 1.
       console.log(tooted); // null                        '["TESLA"]'
       tooted = JSON.parse(tooted) || []; // step 2.
-      console.log(tooted); // []                           ["TESLA"]
-      tooted.push(nimiRef.current.value);  // step 3
+      console.log(tooted); // []                           [{nimi}"" TESLA", {hind}: 3123]
+      tooted.push({nimi: nimiRef.current.value, hind: hindRef.current.value, aktiivne: aktiivneRef.current.checked});  // step 3
       console.log(tooted); // ['text']                     ["TESLA","NOBE"]
       tooted = JSON.stringify(tooted); // step 4
       console.log(tooted); // ["text"]
@@ -49,6 +51,10 @@ function LisaToode() {
       <br />
       <label>Toote nimi</label> <br/>
       <input ref={nimiRef} type="text" /><br />
+      <label>Toote hind</label> <br/>
+      <input ref={hindRef} type="number" /><br />
+      <label>Toote aktiivsus</label> <br/>
+      <input ref={aktiivneRef} type="checkbox" /><br />
       <button onClick={() => lisaUusToode()}>Sisesta</button> <br />
       <div>{sonum}</div>
     </div>
