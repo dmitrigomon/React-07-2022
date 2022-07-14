@@ -41,7 +41,7 @@ function Ostukorv() {
       <Link to="/">
         <button>TAGASI</button>
      </Link>
-     {ostukorv.length > 0 && <div>Ostukorv on {ostukorv.length} eset</div>}
+     {ostukorv.length > 0 && <div>Ostukorvis on {ostukorv.length} eset</div>}
      {ostukorv.length > 0 && <button onClick={() => tyhjenda()}>Tühjenda</button>}
      {ostukorv.length === 0 && <div>Ostukorv on tyhi </div>}
      <div>{ostukorv.map((element, index) => 
