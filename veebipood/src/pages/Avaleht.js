@@ -56,7 +56,9 @@ function Avaleht() {
       ostukorv.push(klikitudToode);
       ostukorv = JSON.stringify(ostukorv);
       sessionStorage.setItem("ostukorv", ostukorv);
+      
     }
+
   return (
     <div>
       {/* {<img src="/logo512.png" alt="text" /> */}
@@ -71,7 +73,10 @@ function Avaleht() {
       <Link to="/poed">
         <button>HALDA POODE</button>
       </Link>
-
+      <Link to="/halda">
+        <button>HALDA TOOTEID</button>
+      </Link>
+      
       <div>{muutuja}</div>
       { muutuja === "uus väärtus" && <div>Väärtust on muudetud</div>}
       <button onClick={() => muudaKoik()}> Pane uus väärtus</button>

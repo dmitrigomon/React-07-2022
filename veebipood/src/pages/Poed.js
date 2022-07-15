@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 // ffc
 function Poed() {
@@ -44,6 +45,10 @@ function Poed() {
       <button onClick={() => sorteeriAZ()}>Sorteeri A-Z</button>
       <button onClick={() => sorteeriZA()}>Sorteeri Z-A</button>
       
+    <Link to="/">
+        <button>TAGASI</button>
+     </Link>
+
       {poed.map((pood, nr) =>
         <div key={pood}>
           {pood.keskus} ({pood.aeg})
